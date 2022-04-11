@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Demo App</title>
+<title>Job hiring portal</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -13,7 +13,7 @@
 	<header>
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="#">DemoApp - API</a>
+				<a class="navbar-brand" href="#">Job hiring portal</a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 					aria-controls="navbarSupportedContent" aria-expanded="false"
