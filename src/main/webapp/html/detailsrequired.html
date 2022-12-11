@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/details.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        user = JSON.parse(localStorage.getItem("loggedIn"));
+        if (user == null) {
+            alert("please login first");
+            location.replace("userRegistration.html");
+
+        }
+
+
+    </script>
+    <title>com.details/%**required**/**</title>
+</head>
+
+<body>
+
+    <div class="head">
+        <span id="head-item">
+            <h1>hire</h1>
+        </span>
+        <span id="head-item">
+            <h1 id="head-text">BRO</h1>
+        </span>
+    </div>
+
+    <main class="main-body">
+        <div class="reg-form">
+            <div>
+                <h2 style="text-decoration: underline;">Details Required</h2>
+
+            </div><br></br>
+            <form name="registration" onsubmit="details()" action="">
+                <div>
+                    <span><label for="first-name">first name &nbsp; &nbsp; &nbsp; &nbsp;: </label></span>
+                    <span id="inputs"><input type="name" name="first-name" id="first-name" placeholder="Name"
+                            required></span>
+                    <p class="error" id="firstNameError"></p>
+                </div><br>
+                <div>
+                    <span><label for="last-name">last-name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label></span>
+                    <span id="inputs"><input type="name" name="last-name" id="last-name" required=""></span>
+                    <p class="error" id="lastNameError"></p>
+                </div><br></br>
+                <div>
+                    <span><label for="date">Date of birdth :</label></span>
+                    <span id="inputs"><input type="date" name="dob" id="dob" required=""></span>
+                    <p class="error" id="dobError"></p>
+                </div><br></br>
+                <div>
+                    <div id="gender">
+                        <div>Gender :</div>
+                        <span><label for="">male :</label></span>
+                        <span><input type="radio" name="gender" value="male" required=""></span>
+                        <span><label for=""> &nbsp;&nbsp; female :</label></span>
+                        <span><input type="radio" name="gender" value="female" required=""></span>
+                        <span><label for=""> &nbsp;&nbsp;others :</label></span>
+                        <span><input type="radio" name="gender" value="others" required=""></span>
+                        <p class="error" id="genderError"></p>
+                    </div><br></br>
+                    <div>
+                        <span><label for="scrol">Degree
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label></span>
+                        <span id="inputs"><select name="branch" id="branch">
+                                <option value="null">---select---</option>
+                                <option value="Bachelor of Arts">Bachelor of Arts</option>
+                                <option value="Bachelor of Science">Bachelor of Science</option>
+                                <option value="Bachelor of Commerce">Bachelor of Commerce</option>
+                                <option value="Bachelor of Engg./Tech">Bachelor of Engg./Tech</option>
+                            </select></span>
+                        <p class="error" id="branchError"></p>
+                    </div><br></br>
+                    <div>
+                        <span><label
+                                for="last-name">course&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                :</label></span>
+                        <span id="inputs">
+                            <select name="course" id="course" required>
+                            </select>
+                        </span>
+                        <script>
+                            function displayCourses() {
+                                const url = "http://localhost:8080/app/ViewCourseServlet";
+                                fetch(url).then(res => res.json()).then(res => {
+                                    let result = res;
+                                    console.log(typeof (result));
+                                    console.log(result, result.length);
+                                    condent = `<option value="null">---select---</option>`;
+                                    for (let value of result) {
+                                        condent += `<option value="${value.cource}">${value.cource}</option>`
+                                    }
+                                    document.getElementById("course").innerHTML = condent;
+                                    console.log(condent);
+                                });
+
+                            }
+
+                            displayCourses();
+
+
+
+                        </script>
+                        <p class="error" id="courceError"></p>
+                    </div><br></br>
+                    <div>
+                        <span><label for="last-name"> college
+                                Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></span>
+                        <!--<span id="inputs"><input type="text" name="college-name" id="college-name" required=""></span> -->
+                        <select name="collegeName" id="colId">
+                        </select>
+                        <script>
+                            const collegeNameUrl = "http://localhost:8080/app/ViewCollegeNamesServlet";
+                            fetch(collegeNameUrl).then(res => res.json()).then(res => {
+                                let result = res;
+                                console.log(typeof (result));
+                                console.log(result, result.length);
+                                condent = `<option value="null">---select---</option>`;
+                                for (let value of result) {
+                                    condent += `<option value="${value.college}">${value.college}</option>`
+                                }
+                                document.getElementById("colId").innerHTML = condent;
+                                console.log(condent);
+                            });
+
+                        </script>
+                        <p class="error" id="collegeNameError"></p>
+                    </div><br></br>
+                    <div>
+                        <span><label for="phone">phone number:</label></span>
+                        <span id="inputs"><input type="phone" name="phone_number" id="phoneNumber" required=""></span>
+                        <p class="error" id="phoneNumberError"></p>
+                    </div><br></br>
+                    <div>
+                        <button type="submit" onclick="details()" class="btn btn-primary">sign in</button>
+                    </div>
+            </form>
+
+    </main>
+    <script>
+
+        function details() {
+            event.preventDefault();
+
+            clearUserFromError()
+
+            var firstName = document.getElementById("first-name").value;
+            var lastName = document.getElementById("last-name").value;
+            var fullName = firstName + lastName;
+            var dob = document.getElementById("dob").value;
+            var branch = document.getElementById("branch").value;
+            console.log(branch);
+            var radios = document.getElementsByName("gender");
+            var course = document.getElementById("course").value;
+            var collegeName = document.getElementById("colId").value;
+            var phoneNumber = document.getElementById("phoneNumber").value;
+            for (let radio of radios) {
+                if (radio.checked) {
+                    var gender = radio.value;
+                }
+            }
+            if (firstName == null || firstName.trim() == "") {
+                document.getElementById("firstNameError").innerHTML = "pleas enter valid name";
+                document.getElementById("first-name").focus();
+            }
+            else if (lastName == null || lastName.trim() == "") {
+                document.getElementById("lastNameError").innerHTML = "pleas enter valid name";
+                document.getElementById("last-name").focus();
+            }
+            else if (dob == null || dob.trim() == "") {
+                document.getElementById("dobError").innerHTML = "pleas enter valid data of birdth";
+                document.getElementById("dob").focus();
+            }
+            else if (gender == null || gender.trim() == "") {
+                document.getElementById("genderError").innerHTML = "pleas enter valid gender";
+                document.getElementById("gender").focus();
+            }
+            else if (branch == 'null' || branch.trim() == "") {
+                document.getElementById("branchError").innerHTML = "pleas enter valid branch";
+                document.getElementById("branch").focus();
+            }
+            else if (course == null || course.trim() == "") {
+                document.getElementById("courceError").innerHTML = "pleas enter valid course";
+                document.getElementById("course").focus();
+            }
+            else if (collegeName == null || collegeName.trim() == "") {
+                document.getElementById("collegeNameError").innerHTML = "pleas enter valid college Name";
+                document.getElementById("colId").focus();
+            }
+            else if (phoneNumber == 0 || phoneNumber <= 11) {
+                document.getElementById("phoneNumberError").innerHTML = "pleas enter valid phone number";
+                document.getElementById("phone_number").focus();
+            }
+            else {
+                var user = JSON.parse(localStorage.getItem("loggedIn"));
+                var mailId = user.email;
+                var password = user.pass;
+
+                console.log(mailId, password);
+                const url = "http://localhost:8080/app/DetailsRequired?name=" + fullName + "&dob=" + dob + "&gender=" + gender + "&branch=" + branch + "&course=" + course + "&collegeName=" + collegeName + "&phoneNumber=" + phoneNumber + "&mailId=" + mailId + "&password=" + password;
+                fetch(url).then(res => res.text()).then(res => {
+                    let result = res.trim();
+                    console.log(typeof (result));
+                    console.log(result, result.length);
+                    let ans = "success";
+                    if (result == ans) {
+                        location.replace("userProfile.html");
+                    }
+                    else {
+                        alert("not successfull");
+
+                    }
+                });
+            }
+        }
+        function clearUserFromError() {
+            document.getElementById("firstNameError").innerHTML = "";
+
+            document.getElementById("lastNameError").innerHTML = "";
+
+            document.getElementById("dobError").innerHTML = "";
+
+            document.getElementById("genderError").innerHTML = "";
+
+            document.getElementById("branchError").innerHTML = "";
+
+            document.getElementById("courceError").innerHTML = "";
+
+            document.getElementById("collegeNameError").innerHTML = "";
+
+            document.getElementById("phoneNumberError").innerHTML = "";
+        }
+
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

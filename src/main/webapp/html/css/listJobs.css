@@ -1,0 +1,14 @@
+table, tr, td, th{
+    border: 2px solid black;
+} 
+.heading{
+ padding: 25px ;
+ padding-left: 450px;
+ font-size: 40px;
+}
+input, select{
+    border-radius: 15px;
+}
+.display{
+    display: inline-block;
+}

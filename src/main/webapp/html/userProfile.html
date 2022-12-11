@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css\userProfile.css">
+    <script src="script\userProfile\authGURDLogin.js"></script>
+    <title>hire BRO</title>
+</head>
+
+<body>
+    <div>
+        <nav id="nave">
+            <span id="head-item">
+                <h1>hire</h1>
+            </span> <span id="head-item">
+                <h1 id="head-text">BRO</h1>
+            </span>
+            <ul id="head-item">
+                <li id="nav-items">
+                    <a href="http://">profile</a>
+                </li>
+                <li id="nav-items" class="dropdown" onclick="dropdownchecker()">
+                    job details
+                </li>
+                <span id="dropdownbox">
+                    <div id="nav-item" class="dropdown-item"><a href="http://">apply jobs</a></div>
+                    <div id="nav-item" class="dropdown-item"><a href="http://">view my jobs</a></div>
+                </span>
+            </ul>
+            <span class="log" >
+               <a href="../index.html">logged out</a>   
+            </span>
+        </nav>
+        
+        <div id="profile">
+            <label for="name">name :</label>
+            <div id="name"></div>
+            <label for="date of birdth">date of birdth :</label>
+            <div id="dOB"></div>
+            <label for="college name">college name :</label>
+            <div id="collegeName"></div>
+            <label for="cource">cource :</label>
+            <div id="cource"></div>
+            <label for="branch">branch :</label>
+            <div id="branch"></div>
+            <label for="phoneNumber">phoneNumber :</label>
+            <div id="phoneNumber"></div>
+            <script type="text/javascript">
+            user = JSON.parse(localStorage.getItem("loggedIn"));
+            const url = "http://localhost:8080/app/UserProfile?mailId="+user.email+"&password="+user.pass;
+            // const url = "http://localhost:8080/app/UserProfile?mailId="+email+"&password="+pass;
+            fetch(url).then(res => res.json()).then(res => {
+                let result = res;
+                console.log(typeof (result));
+                console.log("guhbjgvhgvvhg");
+                console.log(result, result.length);
+                
+                for (let value of result) {
+                    var nameCondent = `<h2>${value.userName}</h2>`;
+                    var dob =`<h2>${value.DOB}</h2>`;
+                    var collegeName = `<h2>${value.collegeName}</h2>`;
+                    var branch = `<h2>${value.branch}</h2>`;
+                    var course = `<h2>${value.cource}</h2>`;
+                    var phoneNumber = `<h2>${value.phoneNumber}</h2>`;
+                }
+                document.getElementById("name").innerHTML = nameCondent;
+                document.getElementById("dOB").innerHTML = dob;
+                document.getElementById("collegeName").innerHTML = collegeName;
+                document.getElementById("cource").innerHTML = course;
+                document.getElementById("branch").innerHTML = branch;
+                document.getElementById("phoneNumber").innerHTML = phoneNumber;
+            });
+
+            </script>
+            
+        </div>
+
+      
+    </div>
+	
+    <script src="script/userProfile/dropdown.js"></script>
+
+</body>
+
+</html>
